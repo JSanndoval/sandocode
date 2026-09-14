@@ -1,0 +1,27 @@
+---
+// src/components/Navbar.astro
+import { useTranslations } from '../i18n/utils';
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
+---
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#051005]/70 backdrop-blur-lg border-b border-green-500/30 shadow-[0_4px_30px_rgba(0,255,0,0.1)]">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-600 tracking-wider">
+        SANDOCODE
+      </a>
+
+      <div class="flex space-x-6 overflow-x-auto no-scrollbar">
+        <a href="#servicios" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.servicios')}</a>
+        <a href="#proyectos" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.proyectos')}</a>
+        <a href="#contacto" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.contacto')}</a>
+      </div>
+
+      <div class="flex items-center gap-2 border-l border-green-500/30 pl-4 ml-2">
+        <a href="/" class:list={[lang === "es" ? "text-green-400" : "text-green-100"]} class="text-xs font-bold hover:text-green-400 transition-colors">ES</a>
+        <span class="text-green-500/50">/</span>
+        <a href="/en" class:list={[lang === "en" ? "text-green-400" : "text-green-100"]} class="text-xs font-bold hover:text-green-400 transition-colors">EN</a>
+      </div>
+    </div>
+  </div>
+</nav>
