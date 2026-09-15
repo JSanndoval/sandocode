@@ -41,6 +41,9 @@ export const ui = {
 
     "footer.creditos": "Construido con Astro y Tailwind CSS.",
 
+    "gracias.titulo": "¡Mensaje enviado!",
+    "gracias.desc": "Gracias por escribirme. Te responderé lo antes posible.",
+
     "404.titulo": "Página no encontrada",
     "404.desc": "La ruta que buscas no existe o fue movida.",
     "404.boton": "Volver al inicio",
@@ -78,6 +81,10 @@ export const ui = {
     "contacto.enviar": "Send Message",
 
     "footer.creditos": "Built with Astro and Tailwind CSS.",
+
+    "gracias.titulo": "Message sent!",
+    "gracias.desc":
+      "Thanks for reaching out. I'll get back to you as soon as possible.",
 
     "404.titulo": "Page not found",
     "404.desc": "The page you're looking for doesn't exist or was moved.",
