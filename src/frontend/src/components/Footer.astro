@@ -1,19 +1,24 @@
 ---
 // src/components/Footer.astro
 import { useTranslations } from '../i18n/utils';
+import { SITE } from '../config';
+
 const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
+const socials = SITE.socials.filter((s) => s.enabled);
 ---
-<footer class="relative z-10 border-t border-green-500/20 bg-black/40 backdrop-blur-md mt-20">
+<footer class="relative z-10 border-t border-accent/20 glass mt-20">
   <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-green-100/50 text-sm text-center md:text-left">
-      © {year} Jorge Sandoval. {t('footer.creditos')}
+    <p class="text-muted/50 text-sm text-center md:text-left">
+      © {year} {SITE.author}. {t('footer.creditos')}
     </p>
     <div class="flex space-x-4">
-      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="text-green-100/50 hover:text-green-400 transition-colors">
-        GitHub
-      </a>
+      {socials.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener noreferrer" class="text-muted/50 hover:text-accent transition-colors">
+          {s.name}
+        </a>
+      ))}
     </div>
   </div>
 </footer>

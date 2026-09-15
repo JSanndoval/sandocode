@@ -3,48 +3,32 @@
 import { useTranslations } from '../i18n/utils';
 const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
+
 const services = [
-  {
-    title: "Desarrollo Frontend Estático",
-    description: "Creación de interfaces ultrarrápidas y plantillas reutilizables utilizando Astro y Tailwind CSS, garantizando carga inmediata y SEO técnico impecable.", //
-    icon: "⚡"
-  },
-  {
-    title: "Headless E-commerce",
-    description: "Implementación de arquitecturas modernas separando el frontend de la lógica de ventas utilizando herramientas como Medusa.", //
-    icon: "🛒"
-  },
-  {
-    title: "Automatización e Integraciones",
-    description: "Desarrollo de soluciones interactivas e integración de servicios externos como Google Forms para la gestión de datos sin requerir backends complejos.", //
-    icon: "🔗"
-  }
-];
+  { key: "1", icon: "⚡" },
+  { key: "2", icon: "🛒" },
+  { key: "3", icon: "🔗" },
+] as const;
 ---
 
 <section class="py-20 relative z-10" id="servicios">
   <div class="text-center mb-12">
-    <h2
-      class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 uppercase tracking-widest"
-    >
+    <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark uppercase tracking-widest">
       {t('servicios.titulo')}
     </h2>
-    <div
-      class="h-px w-24 bg-green-500/50 mx-auto mt-4 shadow-[0_0_10px_rgba(0,255,0,0.5)]"
-    >
-    </div>
+    <div class="h-px w-24 bg-accent/50 mx-auto mt-4 shadow-glow-sm"></div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
     {
       services.map((service) => (
-        <div class="bg-black/40 backdrop-blur-sm border border-green-500/20 rounded-xl p-6 hover:border-green-400/60 hover:bg-green-900/10 transition-all duration-300 group">
+        <div class="glass border border-accent/20 rounded-xl p-6 hover:border-accent/60 hover:bg-accent-dark/10 transition-all duration-300 group">
           <div class="text-4xl mb-4 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-transform">
             {service.icon}
           </div>
-          <h3 class="text-xl font-bold text-green-300 mb-2">{service.title}</h3>
-          <p class="text-green-100/70 leading-relaxed text-sm">
-            {service.description}
+          <h3 class="text-xl font-bold text-accent-light mb-2">{t(`servicios.${service.key}.titulo`)}</h3>
+          <p class="text-muted/70 leading-relaxed text-sm">
+            {t(`servicios.${service.key}.desc`)}
           </p>
         </div>
       ))

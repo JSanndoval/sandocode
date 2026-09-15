@@ -1,27 +1,157 @@
 ---
 // src/components/Navbar.astro
-import { useTranslations } from '../i18n/utils';
-const { lang = "es" } = Astro.props;
+import { useTranslations } from "../i18n/utils";
+import { SITE } from "../config";
+
+const { lang = SITE.defaultLang } = Astro.props;
 const t = useTranslations(lang);
+
+const links = [
+  { href: "#inicio", label: t("nav.inicio") },
+  { href: "#servicios", label: t("nav.servicios") },
+  { href: "#proyectos", label: t("nav.proyectos") },
+  { href: "#contacto", label: t("nav.contacto") },
+];
 ---
-<nav class="fixed top-0 left-0 right-0 z-50 bg-[#051005]/70 backdrop-blur-lg border-b border-green-500/30 shadow-[0_4px_30px_rgba(0,255,0,0.1)]">
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 bg-bg/70 backdrop-blur-lg border-b border-accent/30 shadow-glow-nav"
+>
   <div class="max-w-5xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
-      <a href="#" class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-600 tracking-wider">
+      <!-- Logotipo -->
+      <a
+        href={lang === "en" ? "/en" : "/"}
+        class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-light to-accent-dark tracking-wider"
+      >
         SANDOCODE
       </a>
+      <div class="flex items-center gap-2">
+        <!-- Enlaces: solo escritorio -->
+        <div class="hidden md:flex space-x-6">
+          {
+            links.map((l) => (
+              <a
+                href={l.href}
+                class="text-muted/70 hover:text-accent text-sm font-medium transition-colors"
+              >
+                {l.label}
+              </a>
+            ))
+          }
+        </div>
 
-      <div class="flex space-x-6 overflow-x-auto no-scrollbar">
-        <a href="#servicios" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.servicios')}</a>
-        <a href="#proyectos" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.proyectos')}</a>
-        <a href="#contacto" class="text-green-100/70 hover:text-green-400 text-sm font-medium transition-colors">{t('nav.contacto')}</a>
-      </div>
+        <!-- Selector de idioma: siempre visible -->
+        <div
+          class="flex items-center gap-2 md:border-l md:border-accent/30 md:pl-4 md:ml-2"
+        >
+          <a
+            href="/"
+            class:list={[
+              "text-xs font-bold hover:text-accent transition-colors",
+              lang === "es" ? "text-accent" : "text-muted",
+            ]}>ES</a
+          >
+          <span class="text-accent/50">/</span>
+          <a
+            href="/en"
+            class:list={[
+              "text-xs font-bold hover:text-accent transition-colors",
+              lang === "en" ? "text-accent" : "text-muted",
+            ]}>EN</a
+          >
+        </div>
 
-      <div class="flex items-center gap-2 border-l border-green-500/30 pl-4 ml-2">
-        <a href="/" class:list={[lang === "es" ? "text-green-400" : "text-green-100"]} class="text-xs font-bold hover:text-green-400 transition-colors">ES</a>
-        <span class="text-green-500/50">/</span>
-        <a href="/en" class:list={[lang === "en" ? "text-green-400" : "text-green-100"]} class="text-xs font-bold hover:text-green-400 transition-colors">EN</a>
+        <!-- Botón hamburguesa: solo móvil -->
+        <button
+          id="nav-toggle"
+          type="button"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+          class="md:hidden ml-2 p-2 -mr-2 text-accent hover:bg-accent/10 rounded-lg transition-colors"
+        >
+          <svg
+            id="icon-open"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            id="icon-close"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
+
+  <!-- Panel desplegable móvil -->
+  <div
+    id="nav-menu"
+    class="md:hidden hidden border-t border-accent/20 bg-bg/95 backdrop-blur-lg"
+  >
+    <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col space-y-1">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            data-nav-link
+            class="block px-3 py-3 rounded-lg text-muted/80 hover:text-accent hover:bg-accent/10 font-medium transition-colors"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
 </nav>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
+
+  function setMenu(open: boolean) {
+    menu?.classList.toggle("hidden", !open);
+    iconOpen?.classList.toggle("hidden", open);
+    iconClose?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+  }
+
+  toggle?.addEventListener("click", () => {
+    setMenu(menu?.classList.contains("hidden") ?? true);
+  });
+
+  // Cerrar al elegir una sección
+  document.querySelectorAll("[data-nav-link]").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  // Cerrar con Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  // Si se agranda la ventana, resetear estado
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) setMenu(false);
+  });
+</script>

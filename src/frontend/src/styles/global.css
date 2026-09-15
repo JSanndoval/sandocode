@@ -1,5 +1,33 @@
+/* src/styles/global.css */
 @import "tailwindcss";
+
+@theme {
+  /* === Colores === */
+  --color-bg: #051005;           /* fondo base */
+  --color-surface: #0a1a0a;      /* tarjetas */
+  --color-accent: #4ade80;       /* verde principal */
+  --color-accent-light: #86efac; /* verde claro (gradientes, títulos) */
+  --color-accent-dark: #16a34a;  /* verde oscuro (gradientes) */
+  --color-text: #f0fdf4;         /* texto principal */
+  --color-muted: #dcfce7;        /* texto secundario */
+
+  /* === Resplandores (derivados del acento) === */
+  --shadow-glow-sm: 0 0 15px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  --shadow-glow: 0 0 30px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  --shadow-glow-lg: 0 0 25px color-mix(in srgb, var(--color-accent) 40%, transparent);
+  --shadow-glow-nav: 0 4px 30px color-mix(in srgb, var(--color-accent) 10%, transparent);
+
+  /* === Cristal === */
+  --blur-glass: 12px;
+}
+
+/* Efecto cristal reutilizable (sin borde: cada componente define el suyo) */
+@utility glass {
+  background-color: color-mix(in srgb, black 40%, transparent);
+  backdrop-filter: blur(var(--blur-glass));
+}
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
