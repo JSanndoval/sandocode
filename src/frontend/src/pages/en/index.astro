@@ -5,10 +5,13 @@ import Hero from '../../components/Hero.astro';
 import Services from '../../components/Services.astro';
 import Projects from '../../components/Projects.astro';
 import Contact from '../../components/Contact.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
 ---
-<Layout lang="en">
-  <Hero lang="en" />
-  <Services lang="en" />
-  <Projects lang="en" />
-  <Contact lang="en" />
+<Layout lang={lang}>
+  <Hero lang={lang} />
+  <Services lang={lang} />
+  <Projects lang={lang} />
+  <Contact lang={lang} />
 </Layout>

@@ -40,6 +40,10 @@ export const ui = {
     "contacto.enviar": "Enviar Mensaje",
 
     "footer.creditos": "Construido con Astro y Tailwind CSS.",
+
+    "404.titulo": "Página no encontrada",
+    "404.desc": "La ruta que buscas no existe o fue movida.",
+    "404.boton": "Volver al inicio",
   },
   en: {
     "nav.inicio": "Home",
@@ -74,5 +78,9 @@ export const ui = {
     "contacto.enviar": "Send Message",
 
     "footer.creditos": "Built with Astro and Tailwind CSS.",
+
+    "404.titulo": "Page not found",
+    "404.desc": "The page you're looking for doesn't exist or was moved.",
+    "404.boton": "Back to home",
   },
 } as const;
