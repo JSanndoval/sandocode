@@ -3,6 +3,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import WhatsappButton from '../components/WhatsappButton.astro';
 import { useTranslations } from '../i18n/utils';
 import { SITE } from '../config';
 
@@ -11,23 +12,50 @@ const { lang = SITE.defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
 const pageTitle = `${SITE.title} - ${SITE.tagline}`;
+const pageDesc = lang === "es" ? SITE.desc : SITE.descEn;
 const ogUrl = new URL(SITE.ogImage, SITE.website).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: SITE.title,
+  description: pageDesc,
+  url: SITE.website,
+  image: ogUrl,
+  email: SITE.email,
+  telephone: `+${SITE.whatsapp.number}`,
+  founder: {
+    "@type": "Person",
+    name: SITE.author,
+    jobTitle: "Full Stack Developer",
+    email: SITE.email,
+    sameAs: SITE.socials.filter((s) => s.enabled).map((s) => s.href),
+  },
+  areaServed: "MX",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Nuevo León",
+    addressCountry: "MX",
+  },
+};
 ---
 <html lang={lang} dir={SITE.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
-    <meta name="description" content={lang === "es" ? SITE.desc : SITE.descEn} />
+    <meta name="description" content={pageDesc} />
     <meta name="author" content={SITE.author} />
     <link rel="canonical" href={new URL(Astro.url.pathname, SITE.website).href} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={lang === "es" ? SITE.desc : SITE.descEn} />
+    <meta property="og:description" content={pageDesc} />
     <meta property="og:image" content={ogUrl} />
     <meta property="og:url" content={SITE.website} />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-bg min-h-screen text-text font-sans selection:bg-accent selection:text-black">
     {SITE.backdropEffects.leftGlow && (
@@ -42,5 +70,7 @@ const ogUrl = new URL(SITE.ogImage, SITE.website).href;
       <slot />
       <Footer lang={lang} />
     </main>
+
+    <WhatsappButton lang={lang} />
   </body>
 </html>

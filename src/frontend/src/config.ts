@@ -10,21 +10,40 @@ export const SITE = {
   email: "contacto@sandocode.com",
   ogImage: "sandocode.webp", // en /public
 
+  // Sobre mí
+  about: {
+    // URL de tu foto de perfil (puede ser una ruta en /public, ej. "/foto.webp",
+    // o una URL completa). Déjalo vacío ("") para mostrar el círculo con iniciales.
+    photoUrl: "/Foto-cv.webp",
+  },
+
+  // WhatsApp: solo dígitos con código de país, sin +, espacios ni guiones
+  whatsapp: {
+    number: "528124269725",
+    // Mensaje precargado al abrir el chat
+    messageEs: "Hola Jorge, vi tu portafolio en sandocode y me gustaría platicar sobre un proyecto.",
+    messageEn: "Hi Jorge, I saw your portfolio on sandocode and I'd like to talk about a project.",
+  },
+
   defaultLang: "es",
   dir: "ltr",
   timezone: "America/Monterrey",
 
   // Redes — pon enabled: false para ocultar sin borrar
   socials: [
-    { name: "GitHub", href: "https://github.com/tu-usuario", enabled: true },
-    { name: "LinkedIn", href: "https://linkedin.com/in/tu-usuario", enabled: true },
+    { name: "GitHub", href: "https://github.com/JSanndoval", enabled: true },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/jorge-sandoval-9044a717b", enabled: true },
     { name: "Instagram", href: "https://instagram.com/sandowrite", enabled: false },
   ],
 
   // Secciones visibles en la página
   sections: {
+    showAbout: true,
+    showStats: true,
     showServices: true,
+    showProcess: true,
     showProjects: true,
+    showFaq: true,
     showContact: true,
   },
 
