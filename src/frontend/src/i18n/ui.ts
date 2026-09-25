@@ -33,7 +33,7 @@ export const ui = {
     "stats.2.label": "Proyectos desarrollados",
     "stats.3.valor": "100%",
     "stats.3.label": "Sitios responsivos y optimizados",
-    "stats.4.valor": "B1",
+    "stats.4.valor": "B2",
     "stats.4.label": "Inglés conversacional",
 
     "servicios.titulo": "Soluciones IT",
@@ -122,7 +122,7 @@ export const ui = {
     "stats.2.label": "Projects built",
     "stats.3.valor": "100%",
     "stats.3.label": "Responsive, optimized sites",
-    "stats.4.valor": "B1",
+    "stats.4.valor": "B2",
     "stats.4.label": "Conversational English",
 
     "servicios.titulo": "IT Solutions",

@@ -14,7 +14,7 @@ export const SITE = {
   about: {
     // URL de tu foto de perfil (puede ser una ruta en /public, ej. "/foto.webp",
     // o una URL completa). Déjalo vacío ("") para mostrar el círculo con iniciales.
-    photoUrl: "",
+    photoUrl: "/Foto-cv.webp",
   },
 
   // WhatsApp: solo dígitos con código de país, sin +, espacios ni guiones
