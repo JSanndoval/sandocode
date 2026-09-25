@@ -3,30 +3,74 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import WhatsappButton from '../components/WhatsappButton.astro';
 import { useTranslations } from '../i18n/utils';
+import { SITE } from '../config';
 
-interface Props {
-  lang?: "es" | "en";
-}
-const { lang = "es" } = Astro.props;
+interface Props { lang?: "es" | "en"; }
+const { lang = SITE.defaultLang } = Astro.props;
 const t = useTranslations(lang);
+
+const pageTitle = `${SITE.title} - ${SITE.tagline}`;
+const pageDesc = lang === "es" ? SITE.desc : SITE.descEn;
+const ogUrl = new URL(SITE.ogImage, SITE.website).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: SITE.title,
+  description: pageDesc,
+  url: SITE.website,
+  image: ogUrl,
+  email: SITE.email,
+  telephone: `+${SITE.whatsapp.number}`,
+  founder: {
+    "@type": "Person",
+    name: SITE.author,
+    jobTitle: "Full Stack Developer",
+    email: SITE.email,
+    sameAs: SITE.socials.filter((s) => s.enabled).map((s) => s.href),
+  },
+  areaServed: "MX",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Nuevo León",
+    addressCountry: "MX",
+  },
+};
 ---
-<html lang={lang}>
+<html lang={lang} dir={SITE.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{t('site.title')}</title>
-  </head>
-  <body class="bg-[#051005] min-h-screen text-green-50 font-sans selection:bg-green-500 selection:text-black">
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <meta name="author" content={SITE.author} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.website).href} />
 
-    <!-- Brillos de fondo -->
-    <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-green-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-green-800/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:url" content={SITE.website} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-bg min-h-screen text-text font-sans selection:bg-accent selection:text-black">
+    {SITE.backdropEffects.leftGlow && (
+      <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+    )}
+    {SITE.backdropEffects.rightGlow && (
+      <div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+    )}
 
     <main class="relative z-10">
       <Navbar lang={lang} />
       <slot />
       <Footer lang={lang} />
     </main>
+
+    <WhatsappButton lang={lang} />
   </body>
 </html>

@@ -1,0 +1,20 @@
+---
+// src/pages/gracias.astro
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const homeUrl = lang === "en" ? "/en" : "/";
+---
+<Layout lang={lang}>
+  <section class="container mx-auto px-4 py-20 max-w-2xl pt-40 text-center">
+    <div class="glass border border-accent/30 rounded-2xl p-12">
+      <h1 class="text-4xl font-bold mb-4 text-accent">{t('gracias.titulo')}</h1>
+      <p class="text-muted/80 mb-8">{t('gracias.desc')}</p>
+      <a href={homeUrl} class="inline-block px-6 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/50 hover:border-accent text-accent font-semibold rounded-lg transition-all">
+        {t('404.boton')}
+      </a>
+    </div>
+  </section>
+</Layout>
