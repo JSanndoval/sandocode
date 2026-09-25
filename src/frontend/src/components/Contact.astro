@@ -51,6 +51,21 @@ const inputClass = "w-full bg-bg/50 border border-accent/30 rounded-lg px-4 py-3
           {t('contacto.enviar')}
         </button>
       </form>
+
+      <div class="flex items-center gap-4 my-6">
+        <span class="h-px flex-1 bg-accent/20"></span>
+        <span class="text-xs text-muted/50 uppercase tracking-wide">{t('contacto.oWhatsapp')}</span>
+        <span class="h-px flex-1 bg-accent/20"></span>
+      </div>
+
+      <a
+        href={`https://wa.me/${SITE.whatsapp.number}?text=${encodeURIComponent(lang === "en" ? SITE.whatsapp.messageEn : SITE.whatsapp.messageEs)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/50 hover:border-[#25D366] text-[#25D366] font-bold rounded-lg transition-all"
+      >
+        {t('contacto.whatsappBoton')}
+      </a>
     </div>
   </div>
 </section>
