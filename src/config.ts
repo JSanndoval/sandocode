@@ -11,7 +11,7 @@ export const SITE = {
     en: "/Jorge-Sandoval-CV-EN.pdf",
   },
   email: "contacto@sandocode.com",
-  ogImage: "sandocode.webp", // en /public
+  ogImage: "sandocode.png", // en /public
 
   // WhatsApp: solo dígitos con código de país, sin +, espacios ni guiones
   whatsapp: {
