@@ -17,8 +17,8 @@ export const SITE = {
   whatsapp: {
     number: "528124269725",
     // Mensaje precargado al abrir el chat
-    messageEs: "Hola, Jorge, vi tu portafolio en sandocode y me gustaría platicar sobre un proyecto.",
-    messageEn: "Hi, Jorge, I saw your portfolio on sandocode and I'd like to talk about a project.",
+    messageEs: "Hola, Jorge, vi tu portafolio en Sandocode y me gustaría platicar sobre un proyecto.",
+    messageEn: "Hi, Jorge, I saw your portfolio on Sandocode and I'd like to talk about a project.",
   },
 
   defaultLang: "es",
