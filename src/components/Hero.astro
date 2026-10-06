@@ -1,23 +1,53 @@
 ---
 // src/components/Hero.astro
 import { useTranslations } from '../i18n/utils';
+import { SITE } from '../config';
+
 const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
----
-<section class="container mx-auto px-4 py-20 max-w-5xl pt-32" id="inicio">
-  <div class="glass border border-accent/30 shadow-glow rounded-2xl p-8 md:p-12 relative overflow-hidden">
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
 
-    <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text bg-gradient-to-b text-accent to-accent-dark">
+const cvUrl = lang === "en" ? SITE.cv.en : SITE.cv.es;
+const stack = ["Astro", "Angular", ".NET Core", "Next.js", "TypeScript", "Tailwind"];
+---
+
+<section class="relative pt-36 pb-20 md:pt-44 md:pb-28" id="inicio">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <span class="inline-flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-widest mb-7">
+      <span class="w-2 h-2 rounded-full bg-accent shadow-glow-sm animate-pulse"></span>
+      {t('hero.disponible')}
+    </span>
+
+    <h1 class="text-4xl md:text-6xl font-bold text-text tracking-tight leading-[1.08] mb-7 max-w-3xl text-balance">
       {t('hero.titulo')}
     </h1>
 
-    <p class="text-lg md:text-xl text-muted/80 mb-8 leading-relaxed">
+    <p class="text-lg md:text-xl text-muted/60 leading-relaxed max-w-2xl mb-10">
       {t('hero.descripcion')}
     </p>
 
-    <a href="#proyectos" class="inline-block px-6 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/50 hover:border-accent text-accent font-semibold rounded-lg transition-all shadow-glow-sm hover:shadow-glow-lg">
-      {t('hero.boton')}
-    </a>
+    <div class="flex flex-wrap items-center gap-4 mb-14">
+      <a href="#proyectos"
+         class="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-bg font-semibold rounded-lg hover:bg-accent-light transition-colors">
+        {t('hero.boton')}
+        <span>→</span>
+      </a>
+
+      <a href={cvUrl} target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 px-6 py-3.5 border border-accent/30 text-muted/85 font-semibold rounded-lg hover:border-accent/60 hover:text-accent transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+        </svg>
+        {t('hero.cv')}
+      </a>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-8 border-t border-accent/10">
+      {stack.map((tech) => (
+        <span class="text-xs font-mono text-muted/60">{tech}</span>
+      ))}
+    </div>
+
   </div>
 </section>

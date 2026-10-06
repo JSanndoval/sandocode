@@ -5,25 +5,28 @@ import { SITE } from "../config";
 
 const { lang = SITE.defaultLang } = Astro.props;
 const t = useTranslations(lang);
+const cvUrl = lang === "en" ? SITE.cv.en : SITE.cv.es;
+
+const home = lang === "en" ? "/en" : "/";
 
 const links = [
-  { href: "#inicio", label: t("nav.inicio") },
-  { href: "#sobre-mi", label: t("nav.sobremi") },
-  { href: "#servicios", label: t("nav.servicios") },
-  { href: "#proyectos", label: t("nav.proyectos") },
-  { href: "#contacto", label: t("nav.contacto") },
+  { href: `${home}#proyectos`, label: t("nav.proyectos") },
+  { href: `${home}#sobre-mi`, label: t("nav.sobremi") },
+  { href: `${home}#experiencia`, label: t("nav.experiencia") },
+  { href: `${home}#servicios`, label: t("nav.servicios") },
+  { href: `${home}#contacto`, label: t("nav.contacto") },
 ];
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 bg-bg/70 backdrop-blur-lg border-b border-accent/30 shadow-glow-nav"
+  class="fixed top-0 left-0 right-0 z-50 bg-bg/70 backdrop-blur-lg border-b border-border bg-bg/70 backdrop-blur-lg"
 >
   <div class="max-w-5xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logotipo -->
       <a
         href={lang === "en" ? "/en" : "/"}
-        class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-light to-accent-dark tracking-wider"
+        class="text-xl font-bold text-accent tracking-wider"
       >
         SANDOCODE
       </a>
@@ -42,9 +45,9 @@ const links = [
           }
         </div>
 
-        <!-- Selector de idioma: siempre visible -->
+       <!-- Selector de idioma: siempre visible -->
         <div
-          class="flex items-center gap-2 md:border-l md:border-accent/30 md:pl-4 md:ml-2"
+          class="flex items-center gap-2 md:border-l md:border-border md:pl-5 md:ml-5"
         >
           <a
             href="/"
@@ -53,7 +56,7 @@ const links = [
               lang === "es" ? "text-accent" : "text-muted",
             ]}>ES</a
           >
-          <span class="text-accent/50">/</span>
+          <span class="text-muted/40">/</span>
           <a
             href="/en"
             class:list={[
@@ -62,6 +65,20 @@ const links = [
             ]}>EN</a
           >
         </div>
+
+        <!-- CV: desde sm hacia arriba -->
+        <a
+          href={cvUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-1.5 ml-4 px-3.5 py-1.5 text-xs font-semibold border border-accent/40 text-accent rounded-lg hover:bg-accent/10 transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+          </svg>
+          CV
+        </a>
 
         <!-- Botón hamburguesa: solo móvil -->
         <button
@@ -120,6 +137,18 @@ const links = [
           </a>
         ))
       }
+            <a
+        href={cvUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="sm:hidden mt-3 pt-4 border-t border-border flex items-center gap-2 px-3 py-3 text-accent font-semibold"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+        </svg>
+        {t('hero.cv')}
+      </a>
     </div>
   </div>
 </nav>

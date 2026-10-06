@@ -1,7 +1,18 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
+  site: 'https://sandocode.com',
+  integrations: [
+    sitemap({
+      filter: (page) => !/\/(gracias|thanks)\/?$/.test(page),
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-MX', en: 'en' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()]
   },
@@ -9,7 +20,7 @@ export default defineConfig({
     defaultLocale: "es",
     locales: ["es", "en"],
     routing: {
-      prefixDefaultLocale: false // Hace que la URL base sea español, y solo usa /en/ para inglés
+      prefixDefaultLocale: false
     }
   }
 });

@@ -6,66 +6,109 @@ import { SITE } from '../config';
 const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 const thanksUrl = lang === "en" ? SITE.form.thanksPath.en : SITE.form.thanksPath.es;
+const waHref = `https://wa.me/${SITE.whatsapp.number}?text=${encodeURIComponent(
+  lang === "en" ? SITE.whatsapp.messageEn : SITE.whatsapp.messageEs
+)}`;
 
-const inputClass = "w-full bg-bg/50 border border-accent/30 rounded-lg px-4 py-3 text-text focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors";
+const labelClass = "block text-xs font-semibold text-muted/65 uppercase tracking-wider mb-2";
+const inputClass =
+  "w-full bg-bg/60 border border-border rounded-lg px-4 py-3 text-text placeholder:text-muted/40 focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/40 transition-colors";
 ---
-<section class="py-20 relative z-10" id="contacto">
-  <div class="max-w-3xl mx-auto px-4">
-    <div class="glass border border-accent/20 rounded-2xl p-8 md:p-12 shadow-glow">
-      <h2 class="text-3xl font-bold text-accent mb-6 text-center">{t('contacto.titulo')}</h2>
 
-      <form
-        name={lang === "en" ? "contact-en" : SITE.form.name}
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action={thanksUrl}
-        class="space-y-6"
-      >
-        <input type="hidden" name="subject" value={`Nuevo mensaje desde ${SITE.title}`} />
+<section class="py-24 relative z-10" id="contacto">
+  <div class="max-w-5xl mx-auto px-4">
 
-        <p class="hidden">
-          <label>
-            No llenes este campo si eres humano:
-            <input name="bot-field" tabindex="-1" autocomplete="off" />
-          </label>
+    <header class="mb-12 max-w-2xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-text tracking-tight">
+        {t('contacto.titulo')}
+      </h2>
+      <p class="text-muted/65 mt-3 text-lg">{t('contacto.subtitulo')}</p>
+    </header>
+
+    <div class="grid md:grid-cols-5 gap-10 md:gap-12">
+
+      <!-- Canales directos -->
+      <div class="md:col-span-2">
+        <p class="text-xs font-semibold text-muted/65 uppercase tracking-wider mb-5">
+          {t('contacto.directo')}
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="nombre" class="block text-muted text-sm mb-2">{t('contacto.nombre')}</label>
-            <input type="text" id="nombre" name="nombre" autocomplete="name" required class={inputClass}>
-          </div>
-          <div>
-            <label for="email" class="block text-muted text-sm mb-2">{t('contacto.email')}</label>
-            <input type="email" id="email" name="email" autocomplete="email" required class={inputClass}>
-          </div>
+        <div class="space-y-1">
+          <a href={waHref} target="_blank" rel="noopener noreferrer"
+             class="group flex items-center gap-3 py-2.5 text-muted/80 hover:text-accent transition-colors">
+            <svg class="w-4 h-4 shrink-0 text-muted/50 group-hover:text-accent transition-colors"
+                 fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.04 2a10 10 0 0 0-8.66 15.02L2 22l5.14-1.35A10 10 0 1 0 12.04 2Zm0 18.15a8.1 8.1 0 0 1-4.5-1.24l-.32-.19-3.05.8.81-2.97-.21-.31a8.15 8.15 0 1 1 7.27 3.91Z" />
+            </svg>
+            WhatsApp
+          </a>
+
+          <a href={`mailto:${SITE.email}`}
+             class="group flex items-center gap-3 py-2.5 text-muted/80 hover:text-accent transition-colors break-all">
+            <svg class="w-4 h-4 shrink-0 text-muted/50 group-hover:text-accent transition-colors"
+                 fill="none" stroke="currentColor" stroke-width="1.75"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="5" width="19" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            {SITE.email}
+          </a>
+
+          {SITE.socials.filter((s) => s.enabled).map((s) => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer"
+               class="group flex items-center gap-3 py-2.5 text-muted/80 hover:text-accent transition-colors">
+              <span class="w-4 h-4 shrink-0 flex items-center justify-center text-muted/50 group-hover:text-accent transition-colors">↗</span>
+              {s.name}
+            </a>
+          ))}
         </div>
-
-        <div>
-          <label for="mensaje" class="block text-muted text-sm mb-2">{t('contacto.mensaje')}</label>
-          <textarea id="mensaje" name="mensaje" rows="4" required class={`${inputClass} resize-none`}></textarea>
-        </div>
-
-        <button type="submit" class="w-full px-6 py-4 bg-accent/10 hover:bg-accent/20 border border-accent/50 hover:border-accent text-accent font-bold rounded-lg transition-all">
-          {t('contacto.enviar')}
-        </button>
-      </form>
-
-      <div class="flex items-center gap-4 my-6">
-        <span class="h-px flex-1 bg-accent/20"></span>
-        <span class="text-xs text-muted/50 uppercase tracking-wide">{t('contacto.oWhatsapp')}</span>
-        <span class="h-px flex-1 bg-accent/20"></span>
       </div>
 
-      <a
-        href={`https://wa.me/${SITE.whatsapp.number}?text=${encodeURIComponent(lang === "en" ? SITE.whatsapp.messageEn : SITE.whatsapp.messageEs)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/50 hover:border-[#25D366] text-[#25D366] font-bold rounded-lg transition-all"
-      >
-        {t('contacto.whatsappBoton')}
-      </a>
+      <!-- Formulario -->
+      <div class="md:col-span-3">
+        <form
+          name={lang === "en" ? "contact-en" : SITE.form.name}
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action={thanksUrl}
+          class="space-y-5"
+        >
+          <input type="hidden" name="subject" value={`Nuevo mensaje desde ${SITE.title}`} />
+
+          <p class="hidden">
+            <label>
+              No llenes este campo si eres humano:
+              <input name="bot-field" tabindex="-1" autocomplete="off" />
+            </label>
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="nombre" class={labelClass}>{t('contacto.nombre')}</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required class={inputClass} />
+            </div>
+            <div>
+              <label for="email" class={labelClass}>{t('contacto.email')}</label>
+              <input type="email" id="email" name="email" autocomplete="email" required class={inputClass} />
+            </div>
+          </div>
+
+          <div>
+            <label for="mensaje" class={labelClass}>{t('contacto.mensaje')}</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required class={`${inputClass} resize-none`}></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-bg font-semibold rounded-lg hover:bg-accent-light transition-colors"
+          >
+            {t('contacto.enviar')}
+            <span>→</span>
+          </button>
+        </form>
+      </div>
+
     </div>
   </div>
 </section>

@@ -1,0 +1,186 @@
+---
+// src/pages/proyectos/[slug].astro
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projectsEs')).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return projects.map((p, i) => ({
+    params: { slug: p.id },
+    props: { project: p, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { project, next } = Astro.props;
+const { Content } = await render(project);
+
+const lang = "es" as const;
+const t = useTranslations(lang);
+const d = project.data;
+
+const hasImage = (src?: string) =>
+  !!src && (src.startsWith('http') || existsSync(path.join(process.cwd(), 'public', src)));
+---
+
+<Layout lang={lang} title={d.title} description={d.summary} image={d.image} alternate={`/en/projects/${project.id}/`}>
+  <article class="pt-32 pb-24 relative z-10">
+
+    <!-- Encabezado -->
+    <div class="max-w-6xl mx-auto px-4">
+      <a href="/#proyectos" class="inline-flex items-center gap-2 text-sm text-muted/65 hover:text-accent transition-colors mb-12">
+        <span>←</span> {t('proyectos.volver')}
+      </a>
+
+      <div class="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-start mb-14">
+
+        <div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text tracking-tight leading-[1.05] mb-7 text-balance">
+            {d.title}
+          </h1>
+          <p class="text-lg text-muted/75 leading-relaxed">
+            {d.description}
+          </p>
+        </div>
+
+        <aside class="border-t border-border pt-7 lg:border-t-0 lg:border-l lg:border-border lg:pt-1 lg:pl-10">
+          <dl class="space-y-5">
+            <div>
+              <dt class="text-[11px] font-semibold text-muted/60 uppercase tracking-wider mb-1.5">{t('proyectos.anio')}</dt>
+              <dd class="text-sm text-text font-mono">{d.year}</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] font-semibold text-muted/60 uppercase tracking-wider mb-1.5">{t('proyectos.categoria')}</dt>
+              <dd class="text-sm text-text">{t(`cat.${d.category}`)}</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] font-semibold text-muted/60 uppercase tracking-wider mb-2">{t('proyectos.stack')}</dt>
+              <dd class="flex flex-wrap gap-1.5">
+                {d.tags.map((tag) => (
+                  <span class="text-[11px] font-mono text-muted/70 bg-white/5 px-2 py-0.5 rounded">{tag}</span>
+                ))}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="flex flex-col gap-3 mt-8">
+            {d.demo && (
+              <a href={d.demo} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 px-5 py-3 bg-accent text-bg font-semibold text-sm rounded-lg hover:bg-accent-light transition-colors">
+                {t('proyectos.verSitio')} <span>→</span>
+              </a>
+            )}
+            {d.repo && (
+              <a href={d.repo} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 px-5 py-3 border border-border text-muted/80 font-semibold text-sm rounded-lg hover:border-accent/50 hover:text-accent transition-colors">
+                {t('proyectos.verCodigo')}
+              </a>
+            )}
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- Imagen -->
+    {hasImage(d.image) && (
+      <div class="max-w-6xl mx-auto px-4 mb-20">
+        <img
+          src={d.image}
+          alt={d.imageAlt ?? d.title}
+          width="1440" height="900"
+          loading="eager"
+          fetchpriority="high"
+          class="w-full rounded-2xl border border-border"
+        />
+      </div>
+    )}
+
+    <!-- El caso -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="case-content">
+        <Content />
+      </div>
+    </div>
+
+    <!-- Siguiente proyecto -->
+    <div class="max-w-6xl mx-auto px-4 mt-24">
+      <a href={`/proyectos/${next.id}`}
+         class="group block border-t border-border pt-8 hover:border-accent/40 transition-colors">
+        <p class="text-[11px] font-semibold text-muted/60 uppercase tracking-wider mb-3">
+          {t('proyectos.siguiente')}
+        </p>
+        <div class="flex items-center justify-between gap-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-text group-hover:text-accent transition-colors">
+            {next.data.title}
+          </h2>
+          <span class="text-2xl text-accent group-hover:translate-x-1 transition-transform shrink-0">→</span>
+        </div>
+      </a>
+    </div>
+
+  </article>
+</Layout>
+
+<style is:global>
+  .case-content > :first-child { margin-top: 0; }
+
+  .case-content h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+    letter-spacing: -0.01em;
+  }
+  .case-content h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-top: 2.25rem;
+    margin-bottom: 0.625rem;
+  }
+  .case-content p {
+    color: color-mix(in srgb, var(--color-muted) 80%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    margin-bottom: 1.4rem;
+  }
+  .case-content ul {
+    list-style: none;
+    margin: 0 0 1.75rem;
+  }
+  .case-content li {
+    color: color-mix(in srgb, var(--color-muted) 80%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+  }
+  .case-content li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 0.6rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+  .case-content strong { color: var(--color-text); font-weight: 600; }
+  .case-content code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875em;
+    color: var(--color-accent);
+    background: color-mix(in srgb, white 6%, transparent);
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+  }
+  .case-content a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+</style>

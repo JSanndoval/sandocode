@@ -13,11 +13,20 @@ export const ui = {
     "nav.servicios": "Servicios",
     "nav.proyectos": "Proyectos",
     "nav.contacto": "Contacto",
+    "nav.experiencia": "Experiencia",
 
-    "hero.titulo": "Ingeniería Web & Diseño Estructural",
+    "experiencia.titulo": "Experiencia",
+    "experiencia.subtitulo": "Dónde he trabajado y qué he estudiado.",
+    "experiencia.trabajo": "Trayectoria profesional",
+    "experiencia.educacion": "Formación",
+    "experiencia.actual": "Actual",
+
+    "hero.disponible": "Disponible para nuevos proyectos",
+    "hero.titulo": "Construyo aplicaciones web rápidas y mantenibles.",
     "hero.descripcion":
-      "Construyo aplicaciones web con la misma precisión técnica con la que estructuro progresiones armónicas o desarrollo proyectos narrativos. Arquitecturas estáticas limpias con Astro, cero sobreingeniería, y soluciones frontend diseñadas con atención meticulosa a la legibilidad y el rendimiento.",
-    "hero.boton": "Explorar Proyectos",
+      "Desarrollador Full Stack en Monterrey. Trabajo con .NET Core y Angular en Teleperformance, y construyo sitios, tiendas en línea y plataformas a medida bajo la marca Sandocode.",
+    "hero.boton": "Ver proyectos",
+    "hero.cv": "Descargar CV",
 
     "sobremi.titulo": "Sobre Mí",
     "sobremi.nombre": "Jorge Sandoval",
@@ -26,6 +35,10 @@ export const ui = {
       "Desarrollador Full Stack en Teleperformance (.NET Core & Angular) y freelance desde 2024. Construyo sitios, tiendas online y dashboards con la misma precisión con la que estructuro código: sin relleno, sin sobreingeniería.",
     "sobremi.disponible": "Disponible para nuevos proyectos",
     "sobremi.stack": "Stack principal",
+    "sobremi.rumbo": "Hacia dónde voy",
+    "sobremi.rumboTexto":
+      "Mi siguiente paso es la administración de proyectos: quiero coordinar equipos y entregas, no solo escribir el código. Vengo de Ingeniería en Administración de Sistemas, así que la gestión siempre estuvo en la mezcla; ahora me estoy formando de forma específica en ello.",
+    "sobremi.cursos": "Formación en curso",
 
     "stats.1.valor": "2+",
     "stats.1.label": "Años de experiencia",
@@ -60,7 +73,21 @@ export const ui = {
 
     "proyectos.titulo": "Proyectos Destacados",
     "proyectos.subtitulo": "Explora mis desarrollos recientes.",
-    "proyectos.verCodigo": "Ver Proyecto",
+    "proyectos.verSitio": "Ver sitio",
+    "proyectos.verCodigo": "Código",
+    "proyectos.destacado": "Destacado",
+    "proyectos.verCaso": "Ver caso",
+    "proyectos.volver": "Volver a proyectos",
+    "proyectos.stack": "Stack",
+    "proyectos.anio": "Año",
+    "proyectos.categoria": "Tipo",
+    "proyectos.siguiente": "Siguiente proyecto",
+
+    "cat.landing": "Landing",
+    "cat.ecommerce": "E-commerce",
+    "cat.webapp": "Aplicación web",
+    "cat.3d": "3D / WebGL",
+    "cat.api": "API / Backend",
 
     "faq.titulo": "Preguntas Frecuentes",
     "faq.1.pregunta": "¿Cuánto tarda un proyecto típico?",
@@ -86,8 +113,14 @@ export const ui = {
     "contacto.enviar": "Enviar Mensaje",
     "contacto.oWhatsapp": "o escríbeme directo por WhatsApp",
     "contacto.whatsappBoton": "Chatear por WhatsApp",
+    "contacto.subtitulo": "Cuéntame qué necesitas y lo platicamos.",
+    "contacto.directo": "Contacto directo",
 
     "footer.creditos": "Construido con Astro y Tailwind CSS.",
+    "footer.tagline": "Desarrollo web full stack desde Monterrey, México. Sitios, tiendas en línea y aplicaciones a medida.",
+    "footer.navegacion": "Navegación",
+    "footer.arriba": "Volver arriba",
+
 
     "gracias.titulo": "¡Mensaje enviado!",
     "gracias.desc": "Gracias por escribirme. Te responderé lo antes posible.",
@@ -102,11 +135,20 @@ export const ui = {
     "nav.servicios": "Services",
     "nav.proyectos": "Projects",
     "nav.contacto": "Contact",
+    "nav.experiencia": "Experience",
+    
+    "experiencia.titulo": "Experience",
+    "experiencia.subtitulo": "Where I've worked and what I studied.",
+    "experiencia.trabajo": "Professional experience",
+    "experiencia.educacion": "Education",
+    "experiencia.actual": "Present",
 
-    "hero.titulo": "Web Engineering & Structural Design",
+    "hero.disponible": "Available for new projects",
+    "hero.titulo": "I build fast, maintainable web applications.",
     "hero.descripcion":
-      "I build web applications with the same technical precision I use to structure harmonic progressions or develop narrative projects. Clean static architectures with Astro, zero over-engineering, and frontend solutions designed with meticulous attention to readability and performance.",
-    "hero.boton": "Explore Projects",
+      "Full Stack Developer based in Monterrey, Mexico. I work with .NET Core and Angular at Teleperformance, and build custom sites, online stores and platforms under the Sandocode brand.",
+    "hero.boton": "View projects",
+    "hero.cv": "Download CV",
 
     "sobremi.titulo": "About Me",
     "sobremi.nombre": "Jorge Sandoval",
@@ -115,6 +157,10 @@ export const ui = {
       "Full Stack Developer at Teleperformance (.NET Core & Angular) and freelancer since 2024. I build websites, online stores, and dashboards with the same precision I bring to code: no filler, no over-engineering.",
     "sobremi.disponible": "Available for new projects",
     "sobremi.stack": "Main stack",
+    "sobremi.rumbo": "Where I'm headed",
+    "sobremi.rumboTexto":
+      "My next step is project management: I want to coordinate teams and deliveries, not just write the code. I come from a Systems Administration Engineering background, so management was always part of the mix; now I'm training for it specifically.",
+    "sobremi.cursos": "Currently studying",
 
     "stats.1.valor": "2+",
     "stats.1.label": "Years of experience",
@@ -149,7 +195,21 @@ export const ui = {
 
     "proyectos.titulo": "Featured Projects",
     "proyectos.subtitulo": "Explore my recent work.",
-    "proyectos.verCodigo": "View Project",
+    "proyectos.verSitio": "View site",
+    "proyectos.verCodigo": "Code",
+    "proyectos.destacado": "Featured",
+    "proyectos.verCaso": "View case",
+    "proyectos.volver": "Back to projects",
+    "proyectos.stack": "Stack",
+    "proyectos.anio": "Year",
+    "proyectos.categoria": "Type",
+    "proyectos.siguiente": "Next project",
+
+    "cat.landing": "Landing",
+    "cat.ecommerce": "E-commerce",
+    "cat.webapp": "Web app",
+    "cat.3d": "3D / WebGL",
+    "cat.api": "API / Backend",
 
     "faq.titulo": "Frequently Asked Questions",
     "faq.1.pregunta": "How long does a typical project take?",
@@ -175,8 +235,13 @@ export const ui = {
     "contacto.enviar": "Send Message",
     "contacto.oWhatsapp": "or message me directly on WhatsApp",
     "contacto.whatsappBoton": "Chat on WhatsApp",
+    "contacto.subtitulo": "Tell me what you need and let's talk it through.",
+    "contacto.directo": "Direct contact",
 
     "footer.creditos": "Built with Astro and Tailwind CSS.",
+    "footer.tagline": "Full stack web development from Monterrey, Mexico. Websites, online stores and custom applications.",
+    "footer.navegacion": "Navigation",
+    "footer.arriba": "Back to top",
 
     "gracias.titulo": "Message sent!",
     "gracias.desc":

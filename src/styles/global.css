@@ -3,13 +3,14 @@
 
 @theme {
   /* === Colores === */
-  --color-bg: #051005;           /* fondo base */
-  --color-surface: #0a1a0a;      /* tarjetas */
-  --color-accent: #4ade80;       /* verde principal */
-  --color-accent-light: #86efac; /* verde claro (gradientes, títulos) */
-  --color-accent-dark: #16a34a;  /* verde oscuro (gradientes) */
-  --color-text: #f0fdf4;         /* texto principal */
-  --color-muted: #dcfce7;        /* texto secundario */
+  --color-bg: #0a0b0d;           /* fondo base, neutro */
+  --color-surface: #121417;      /* tarjetas */
+  --color-border: #22262c;       /* bordes neutros */
+  --color-accent: #4ade80;       /* verde principal — solo acción */
+  --color-accent-light: #86efac;
+  --color-accent-dark: #16a34a;
+  --color-text: #f2f4f7;         /* texto principal, blanco neutro */
+  --color-muted: #c2cbd6;         /* texto secundario, gris neutro */
 
   /* === Resplandores (derivados del acento) === */
   --shadow-glow-sm: 0 0 15px color-mix(in srgb, var(--color-accent) 20%, transparent);
@@ -19,6 +20,10 @@
 
   /* === Cristal === */
   --blur-glass: 12px;
+
+    /* === Tipografía === */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
 }
 
 /* Efecto cristal reutilizable (sin borde: cada componente define el suyo) */
@@ -30,4 +35,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
