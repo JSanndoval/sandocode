@@ -60,7 +60,14 @@ export const ui = {
 
     "proyectos.titulo": "Proyectos Destacados",
     "proyectos.subtitulo": "Explora mis desarrollos recientes.",
-    "proyectos.verCodigo": "Ver Proyecto",
+    "proyectos.verSitio": "Ver sitio",
+    "proyectos.verCodigo": "Código",
+
+    "cat.landing": "Landing",
+    "cat.ecommerce": "E-commerce",
+    "cat.webapp": "Aplicación web",
+    "cat.3d": "3D / WebGL",
+    "cat.api": "API / Backend",
 
     "faq.titulo": "Preguntas Frecuentes",
     "faq.1.pregunta": "¿Cuánto tarda un proyecto típico?",
@@ -149,7 +156,14 @@ export const ui = {
 
     "proyectos.titulo": "Featured Projects",
     "proyectos.subtitulo": "Explore my recent work.",
-    "proyectos.verCodigo": "View Project",
+    "proyectos.verSitio": "View site",
+    "proyectos.verCodigo": "Code",
+
+    "cat.landing": "Landing",
+    "cat.ecommerce": "E-commerce",
+    "cat.webapp": "Web app",
+    "cat.3d": "3D / WebGL",
+    "cat.api": "API / Backend",
 
     "faq.titulo": "Frequently Asked Questions",
     "faq.1.pregunta": "How long does a typical project take?",
