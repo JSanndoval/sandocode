@@ -78,8 +78,10 @@ export const ui = {
     "proyectos.destacado": "Destacado",
     "proyectos.verCaso": "Ver caso",
     "proyectos.volver": "Volver a proyectos",
-    "proyectos.contexto": "Contexto",
     "proyectos.stack": "Stack",
+    "proyectos.anio": "Año",
+    "proyectos.categoria": "Tipo",
+    "proyectos.siguiente": "Siguiente proyecto",
 
     "cat.landing": "Landing",
     "cat.ecommerce": "E-commerce",
@@ -111,8 +113,14 @@ export const ui = {
     "contacto.enviar": "Enviar Mensaje",
     "contacto.oWhatsapp": "o escríbeme directo por WhatsApp",
     "contacto.whatsappBoton": "Chatear por WhatsApp",
+    "contacto.subtitulo": "Cuéntame qué necesitas y lo platicamos.",
+    "contacto.directo": "Contacto directo",
 
     "footer.creditos": "Construido con Astro y Tailwind CSS.",
+    "footer.tagline": "Desarrollo web full stack desde Monterrey, México. Sitios, tiendas en línea y aplicaciones a medida.",
+    "footer.navegacion": "Navegación",
+    "footer.arriba": "Volver arriba",
+
 
     "gracias.titulo": "¡Mensaje enviado!",
     "gracias.desc": "Gracias por escribirme. Te responderé lo antes posible.",
@@ -192,8 +200,10 @@ export const ui = {
     "proyectos.destacado": "Featured",
     "proyectos.verCaso": "View case",
     "proyectos.volver": "Back to projects",
-    "proyectos.contexto": "Context",
     "proyectos.stack": "Stack",
+    "proyectos.anio": "Year",
+    "proyectos.categoria": "Type",
+    "proyectos.siguiente": "Next project",
 
     "cat.landing": "Landing",
     "cat.ecommerce": "E-commerce",
@@ -225,8 +235,13 @@ export const ui = {
     "contacto.enviar": "Send Message",
     "contacto.oWhatsapp": "or message me directly on WhatsApp",
     "contacto.whatsappBoton": "Chat on WhatsApp",
+    "contacto.subtitulo": "Tell me what you need and let's talk it through.",
+    "contacto.directo": "Direct contact",
 
     "footer.creditos": "Built with Astro and Tailwind CSS.",
+    "footer.tagline": "Full stack web development from Monterrey, Mexico. Websites, online stores and custom applications.",
+    "footer.navegacion": "Navigation",
+    "footer.arriba": "Back to top",
 
     "gracias.titulo": "Message sent!",
     "gracias.desc":

@@ -7,18 +7,78 @@ const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
 const socials = SITE.socials.filter((s) => s.enabled);
+const home = lang === "en" ? "/en" : "/";
+
+const links = [
+  { href: `${home}#proyectos`, label: t("nav.proyectos") },
+  { href: `${home}#sobre-mi`, label: t("nav.sobremi") },
+  { href: `${home}#experiencia`, label: t("nav.experiencia") },
+  { href: `${home}#servicios`, label: t("nav.servicios") },
+  { href: `${home}#contacto`, label: t("nav.contacto") },
+];
 ---
-<footer class="relative z-10 border-t border-accent/20 glass mt-20">
-  <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-muted/65 text-sm text-center md:text-left">
-      © {year} {SITE.author}. {t('footer.creditos')}
-    </p>
-    <div class="flex space-x-4">
-      {socials.map((s) => (
-        <a href={s.href} target="_blank" rel="noopener noreferrer" class="text-muted/65 hover:text-accent transition-colors">
-          {s.name}
-        </a>
-      ))}
+<footer class="relative z-10 border-t border-border">
+  <div class="max-w-5xl mx-auto px-4 py-14">
+
+    <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr] md:items-baseline">
+
+      <!-- Marca -->
+      <div>
+        <p class="text-lg font-bold text-accent tracking-wider mb-4">Sandocode</p>
+        <p class="text-sm text-muted/65 leading-relaxed max-w-xs">
+          {t('footer.tagline')}
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <nav aria-label={t('footer.navegacion')}>
+        <p class="text-xs font-semibold text-muted/65 uppercase tracking-wider mb-4">
+          {t('footer.navegacion')}
+        </p>
+        <ul class="space-y-2.5">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm text-muted/80 hover:text-accent transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Contacto -->
+      <div>
+        <p class="text-xs font-semibold text-muted/65 uppercase tracking-wider mb-4">
+          {t('contacto.directo')}
+        </p>
+        <ul class="space-y-2.5">
+          <li>
+            <a href={`mailto:${SITE.email}`}
+               class="text-sm text-muted/80 hover:text-accent transition-colors break-all">
+              {SITE.email}
+            </a>
+          </li>
+          {socials.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener noreferrer"
+                 class="text-sm text-muted/80 hover:text-accent transition-colors">
+                {s.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
     </div>
+
+    <div class="mt-12 pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-xs text-muted/60 text-center sm:text-left">
+        © {year} {SITE.author} · {t('footer.creditos')}
+      </p>
+      <a href="#inicio" class="text-xs text-muted/60 hover:text-accent transition-colors">
+        {t('footer.arriba')} ↑
+      </a>
+    </div>
+
   </div>
 </footer>

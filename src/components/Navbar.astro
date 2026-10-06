@@ -7,12 +7,14 @@ const { lang = SITE.defaultLang } = Astro.props;
 const t = useTranslations(lang);
 const cvUrl = lang === "en" ? SITE.cv.en : SITE.cv.es;
 
+const home = lang === "en" ? "/en" : "/";
+
 const links = [
-  { href: "#proyectos", label: t("nav.proyectos") },
-  { href: "#sobre-mi", label: t("nav.sobremi") },
-  { href: "#experiencia", label: t("nav.experiencia") },
-  { href: "#servicios", label: t("nav.servicios") },
-  { href: "#contacto", label: t("nav.contacto") },
+  { href: `${home}#proyectos`, label: t("nav.proyectos") },
+  { href: `${home}#sobre-mi`, label: t("nav.sobremi") },
+  { href: `${home}#experiencia`, label: t("nav.experiencia") },
+  { href: `${home}#servicios`, label: t("nav.servicios") },
+  { href: `${home}#contacto`, label: t("nav.contacto") },
 ];
 ---
 
