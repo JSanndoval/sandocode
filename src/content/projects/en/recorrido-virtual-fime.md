@@ -1,11 +1,11 @@
 ---
-title: "Recorrido Virtual FIME"
-summary: "Recorrido 3D del campus remasterizado de Unity a Three.js: corre en el navegador, sin instalar nada."
-description: "El recorrido original de la facultad estaba hecho en Unity: exigía descargar un ejecutable, lo que descartaba a cualquier aspirante entrando desde el celular. Lo remasterizé con Three.js para que corra directo en el navegador, sin instalación. El reto fue mantener los tiempos de carga razonables con geometría pesada en conexiones móviles."
+title: "FIME Virtual Tour"
+summary: "Campus 3D tour remastered from Unity to Three.js: runs in the browser, no install needed."
+description: "The faculty's original tour was built in Unity: it required downloading an executable, which ruled out any applicant arriving from a phone. I remastered it with Three.js so it runs directly in the browser, no installation. The challenge was keeping load times reasonable with heavy geometry over mobile connections."
 demo: "https://recorrido-virutal-fime.netlify.app/"
 repo: "https://github.com/JSanndoval/recorrido-virtual-fime"
 image: "/projects/recorrido-virtual-fime.webp"
-imageAlt: "Vista del recorrido virtual 3D del campus de FIME"
+imageAlt: "View of the FIME campus 3D virtual tour"
 category: "3d"
 tags: ["Three.js", "Astro", "WebGL"]
 year: 2025

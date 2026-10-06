@@ -1,10 +1,10 @@
 ---
-title: "Sandowrite — Plataforma Literaria"
-summary: "Plataforma de lectura larga con tipografía medida y un conversor de .docx a Markdown para publicar desde Word."
-description: "Publicar narrativa en un blog genérico significa pelear con plantillas diseñadas para marketing, no para lectura larga. Construí una plataforma centrada en el texto, con tipografía medida para sesiones extensas y carga inmediata. La pieza que más me costó: un conversor de .docx a Markdown que me deja escribir en Word y publicar sin tocar HTML."
+title: "Sandowrite — Literary Platform"
+summary: "Long-form reading platform with measured typography and a .docx-to-Markdown converter to publish straight from Word."
+description: "Publishing fiction on a generic blog means fighting templates designed for marketing, not for long-form reading. I built a text-first platform with typography measured for extended sessions and instant load times. The hardest piece: a .docx-to-Markdown converter that lets me write in Word and publish without touching HTML."
 demo: "https://sandowrite.com/"
 image: "/projects/sandowrite.webp"
-imageAlt: "Portada de Sandowrite mostrando el listado de relatos"
+imageAlt: "Sandowrite home page showing the list of stories"
 category: "webapp"
 tags: ["Astro", "TypeScript", "Tailwind CSS"]
 year: 2026
@@ -12,35 +12,34 @@ featured: true
 order: 1
 ---
 
-## El problema
+## The problem
 
-Escribo narrativa de terror y necesitaba dónde publicarla. Los blogs genéricos
-están diseñados para marketing: columnas anchas, interlineado apretado,
-tarjetas de llamada a la acción interrumpiendo cada tres párrafos. Nada de eso
-sirve para alguien que se va a sentar veinte minutos a leer un relato.
+I write horror fiction and needed somewhere to publish it. Generic blogs are
+built for marketing: wide columns, tight line height, call-to-action cards
+interrupting every three paragraphs. None of that works for someone who's
+going to sit down for twenty minutes with a short story.
 
-## Qué construí
+## What I built
 
-Una plataforma estática en Astro centrada exclusivamente en el texto:
+A static Astro platform focused entirely on the text:
 
-- Medida de línea de 65-70 caracteres, que es donde el ojo deja de cansarse
-- Interlineado de 1.8 y jerarquía tipográfica pensada para sesiones largas
-- Carga inmediata, sin JavaScript de cliente en las páginas de lectura
-- Cada relato es un archivo Markdown, versionado en Git
+- A 65-70 character line measure, where the eye stops getting tired
+- 1.8 line height and a type hierarchy designed for long sessions
+- Instant load, with no client-side JavaScript on the reading pages
+- Every story is a Markdown file, versioned in Git
 
-## La parte difícil
+## The hard part
 
-Escribo los borradores en Word, y pasarlos a Markdown a mano era un impuesto
-que terminaba desincentivando publicar. Construí un conversor de `.docx` a
-Markdown que preserva cursivas, saltos de escena y comillas tipográficas
-españolas.
+I draft in Word, and converting to Markdown by hand was a tax that ended up
+discouraging me from publishing at all. I built a `.docx`-to-Markdown
+converter that preserves italics, scene breaks and Spanish typographic quotes.
 
-El caso que más me costó fue distinguir una cursiva de énfasis de una cursiva
-de pensamiento del personaje: tipográficamente son idénticas en el `.docx`,
-pero semánticamente quería que salieran con etiquetas distintas. Lo resolví
-con una convención de marcado propia en el documento origen.
+The case that gave me the most trouble was telling an emphasis italic apart
+from a character's inner thought: typographically they're identical in the
+`.docx`, but semantically I wanted them to come out with different tags. I
+solved it with a markup convention of my own in the source document.
 
-## Resultado
+## Result
 
-Publico desde Word y el relato queda en línea sin tocar HTML. El sitio carga
-en menos de un segundo y el flujo de escritura dejó de tener fricción.
+I publish from Word and the story goes live without touching HTML. The site
+loads in under a second and the writing workflow stopped having friction.

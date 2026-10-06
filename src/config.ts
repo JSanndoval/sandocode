@@ -7,8 +7,8 @@ export const SITE = {
   desc: "Ingeniería web y diseño estructural. Arquitecturas estáticas limpias con Astro, cero sobreingeniería",
   descEn: "Web engineering and structural design. Clean static architectures with Astro, zero over-engineering.",
   cv: {
-    es: "Jorge-Sandoval-CV-ES.pdf",
-    en: "Jorge-Sandoval-CV-EN.pdf",
+    es: "/Jorge-Sandoval-CV-ES.pdf",
+    en: "/Jorge-Sandoval-CV-EN.pdf",
   },
   email: "contacto@sandocode.com",
   ogImage: "sandocode.webp", // en /public

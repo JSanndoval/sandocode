@@ -1,11 +1,11 @@
 ---
-title: "sandocode — Este Portafolio"
-summary: "Este portafolio. Contenido en colecciones Markdown validadas con Zod y un check de pre-build bilingüe."
-description: "El sitio que estás viendo. Lo construí como sistema de contenido en lugar de páginas sueltas: los proyectos y la experiencia viven en colecciones de Markdown validadas con Zod, y un script de pre-build verifica que cada entrada exista en español e inglés antes de desplegar. Secciones activables desde un solo archivo de configuración, sin tocar componentes."
+title: "sandocode — This Portfolio"
+summary: "This portfolio. Content in Markdown collections validated with Zod, plus a bilingual pre-build check."
+description: "The site you're looking at. I built it as a content system rather than loose pages: projects and experience live in Markdown collections validated with Zod, and a pre-build script verifies that every entry exists in both Spanish and English before deploying. Sections toggle from a single configuration file, without touching components."
 demo: "https://sandocode.com/"
 repo: "https://github.com/JSanndoval/sandocode"
 image: "/projects/sandocode.webp"
-imageAlt: "Portada del portafolio sandocode"
+imageAlt: "sandocode portfolio home page"
 category: "landing"
 tags: ["Astro", "TypeScript", "Tailwind CSS", "i18n"]
 year: 2026

@@ -25,13 +25,13 @@ const projectUrl = (id: string) =>
   lang === "en" ? `/en/projects/${id}` : `/proyectos/${id}`;
 ---
 
-<section class="py-24 relative z-10" id="proyectos">
+<section class="pt-16 pb-24 relative z-10" id="proyectos">
   <div class="max-w-6xl mx-auto px-4">
     <header class="mb-12 max-w-2xl">
       <h2 class="text-3xl md:text-4xl font-bold text-text tracking-tight">
         {t("proyectos.titulo")}
       </h2>
-      <p class="text-muted/50 mt-3 text-lg leading-relaxed">
+      <p class="text-muted/65 mt-3 text-lg leading-relaxed">
         {t("proyectos.subtitulo")}
       </p>
     </header>
@@ -74,7 +74,7 @@ const projectUrl = (id: string) =>
                 i % 2 === 1 && "md:order-1",
               ]}
             >
-              <div class="flex items-center gap-3 mb-3 text-xs font-mono text-muted/40">
+              <div class="flex items-center gap-3 mb-3 text-xs font-mono text-muted/60">
                 <span>{t(`cat.${p.data.category}`)}</span>
                 <span class="w-1 h-1 rounded-full bg-muted/30" />
                 <span>{p.data.year}</span>
@@ -109,7 +109,7 @@ const projectUrl = (id: string) =>
                     href={p.data.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                    class="text-sm text-muted/65 hover:text-accent transition-colors"
                   >
                     {t("proyectos.verSitio")}
                   </a>
@@ -119,7 +119,7 @@ const projectUrl = (id: string) =>
                     href={p.data.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                    class="text-sm text-muted/65 hover:text-accent transition-colors"
                   >
                     {t("proyectos.verCodigo")}
                   </a>
@@ -156,7 +156,7 @@ const projectUrl = (id: string) =>
             </div>
 
             <div class="flex flex-col flex-grow p-6">
-              <div class="flex items-center gap-3 mb-2 text-xs font-mono text-muted/40">
+              <div class="flex items-center gap-3 mb-2 text-xs font-mono text-muted/60">
                 <span>{t(`cat.${p.data.category}`)}</span>
                 <span class="w-1 h-1 rounded-full bg-muted/30" />
                 <span>{p.data.year}</span>
@@ -190,7 +190,7 @@ const projectUrl = (id: string) =>
                     href={p.data.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                    class="text-sm text-muted/65 hover:text-accent transition-colors"
                   >
                     {t("proyectos.verSitio")}
                   </a>
@@ -200,7 +200,7 @@ const projectUrl = (id: string) =>
                     href={p.data.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                    class="text-sm text-muted/65 hover:text-accent transition-colors"
                   >
                     {t("proyectos.verCodigo")}
                   </a>

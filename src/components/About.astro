@@ -11,7 +11,7 @@ const t = useTranslations(lang);
 const stack = ["Astro", "Angular", ".NET Core", "Next.js", "TypeScript", "Tailwind CSS"];
 ---
 
-<section class="py-20 relative z-10" id="sobre-mi">
+<section class="py-24 relative z-10" id="sobre-mi">
   <div class="max-w-5xl mx-auto px-4">
     <div class="glass border border-border rounded-2xl p-8 md:p-12 shadow-glow grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
       <div class="flex md:block justify-center">
@@ -33,7 +33,7 @@ const stack = ["Astro", "Angular", ".NET Core", "Next.js", "TypeScript", "Tailwi
           {t('sobremi.bio')}
         </p>
 
-        <p class="text-xs font-semibold text-muted/50 uppercase tracking-widest mb-3">{t('sobremi.stack')}</p>
+        <p class="text-xs font-semibold text-muted/65 uppercase tracking-widest mb-3">{t('sobremi.stack')}</p>
         <div class="flex flex-wrap gap-2">
           {stack.map((tech) => (
             <span class="text-xs font-mono bg-accent/10 text-accent px-3 py-1.5 rounded-full border border-border">

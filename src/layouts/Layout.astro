@@ -14,8 +14,9 @@ interface Props {
   description?: string;
   image?: string;
   alternate?: string;
+  noindex?: boolean;
 }
-const { lang = SITE.defaultLang, title, description, image, alternate  } = Astro.props;
+const { lang = SITE.defaultLang, title, description, image, alternate, noindex } = Astro.props;
 const t = useTranslations(lang);
 
 const pageTitle = title ? `${title} — ${SITE.title}` : `${SITE.title} - ${SITE.tagline}`;
@@ -54,6 +55,7 @@ const jsonLd = {
     <meta name="description" content={pageDesc} />
     <meta name="author" content={SITE.author} />
     <link rel="canonical" href={new URL(Astro.url.pathname, SITE.website).href} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     {alternate && (
       <>
         <link

@@ -1,10 +1,10 @@
 ---
-title: "Invitaciones Digitales"
-summary: "Plantilla de invitaciones digitales que carga en menos de un segundo y se adapta a cada evento desde un solo archivo."
-description: "Las invitaciones digitales se comparten por WhatsApp y se abren en celulares con señal irregular, donde cada segundo de carga cuesta invitados. Desarrollé una plantilla estática con cuenta regresiva, confirmación de asistencia, mapas e itinerario, que carga en menos de un segundo y se adapta a cada evento editando un solo archivo de configuración. Sin CMS, sin base de datos y sin costo recurrente de hosting."
+title: "Digital Invitations"
+summary: "Digital invitation template that loads in under a second and adapts to each event from a single config file."
+description: "Digital invitations get shared over WhatsApp and opened on phones with patchy signal, where every second of load time costs guests. I built a static template with a countdown, RSVP, maps and itinerary that loads in under a second and adapts to each event by editing a single configuration file. No CMS, no database, no recurring hosting cost."
 demo: "https://sofia-sebastian-boda.netlify.app/"
 image: "/projects/invitation-template.webp"
-imageAlt: "Invitación de boda digital con cuenta regresiva y confirmación de asistencia"
+imageAlt: "Digital wedding invitation with countdown and RSVP"
 category: "landing"
 tags: ["Astro", "Tailwind CSS", "JavaScript"]
 year: 2026

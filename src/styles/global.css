@@ -10,7 +10,7 @@
   --color-accent-light: #86efac;
   --color-accent-dark: #16a34a;
   --color-text: #f2f4f7;         /* texto principal, blanco neutro */
-  --color-muted: #9aa4af;        /* texto secundario, gris neutro */
+  --color-muted: #c2cbd6;         /* texto secundario, gris neutro */
 
   /* === Resplandores (derivados del acento) === */
   --shadow-glow-sm: 0 0 15px color-mix(in srgb, var(--color-accent) 20%, transparent);
