@@ -15,7 +15,7 @@ import Experience from '../components/Experience.astro';
 
 const lang = getLangFromUrl(Astro.url);
 ---
-<Layout lang={lang} alternate="/en">
+<Layout lang={lang} alternate="/en/">
   <Hero lang={lang} />
   {SITE.sections.showProjects && <Projects lang={lang} />}
   {SITE.sections.showAbout && <About lang={lang} />}

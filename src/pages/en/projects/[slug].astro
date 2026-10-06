@@ -22,7 +22,7 @@ const hasImage = (src?: string) =>
   !!src && (src.startsWith('http') || existsSync(path.join(process.cwd(), 'public', src)));
 ---
 
-<Layout lang={lang} title={d.title} description={d.summary} image={d.image} alternate={/proyectos/${project.id}}>
+<Layout lang={lang} title={d.title} description={d.summary} image={d.image} alternate={`/en/projects/${project.id}/`}>
   <article class="pt-32 pb-24 relative z-10">
     <div class="max-w-3xl mx-auto px-4">
 
