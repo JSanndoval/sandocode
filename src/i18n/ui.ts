@@ -24,7 +24,7 @@ export const ui = {
     "hero.disponible": "Disponible para nuevos proyectos",
     "hero.titulo": "Construyo aplicaciones web rápidas y mantenibles.",
     "hero.descripcion":
-      "Desarrollador Full Stack en Monterrey. Trabajo con .NET Core y Angular en Teleperformance, y construyo sitios, tiendas en línea y plataformas a medida bajo la marca sandocode.",
+      "Desarrollador Full Stack en Monterrey. Trabajo con .NET Core y Angular en Teleperformance, y construyo sitios, tiendas en línea y plataformas a medida bajo la marca Sandocode.",
     "hero.boton": "Ver proyectos",
     "hero.cv": "Descargar CV",
 
@@ -138,7 +138,7 @@ export const ui = {
     "hero.disponible": "Available for new projects",
     "hero.titulo": "I build fast, maintainable web applications.",
     "hero.descripcion":
-      "Full Stack Developer based in Monterrey, Mexico. I work with .NET Core and Angular at Teleperformance, and build custom sites, online stores and platforms under the sandocode brand.",
+      "Full Stack Developer based in Monterrey, Mexico. I work with .NET Core and Angular at Teleperformance, and build custom sites, online stores and platforms under the Sandocode brand.",
     "hero.boton": "View projects",
     "hero.cv": "Download CV",
 
