@@ -6,16 +6,12 @@ export const SITE = {
   tagline: "IT Solutions",
   desc: "Ingeniería web y diseño estructural. Arquitecturas estáticas limpias con Astro, cero sobreingeniería",
   descEn: "Web engineering and structural design. Clean static architectures with Astro, zero over-engineering.",
-
+  cv: {
+    es: "jorge-sandoval-cv.pdf",
+    en: "jorge-sandoval-cv-en.pdf"
+  },
   email: "contacto@sandocode.com",
   ogImage: "sandocode.webp", // en /public
-
-  // Sobre mí
-  about: {
-    // URL de tu foto de perfil (puede ser una ruta en /public, ej. "/foto.webp",
-    // o una URL completa). Déjalo vacío ("") para mostrar el círculo con iniciales.
-    photoUrl: "/Foto-cv.webp",
-  },
 
   // WhatsApp: solo dígitos con código de país, sin +, espacios ni guiones
   whatsapp: {
@@ -40,6 +36,7 @@ export const SITE = {
   sections: {
     showAbout: true,
     showStats: true,
+    showExperience: true,
     showServices: true,
     showProcess: true,
     showProjects: true,
@@ -50,7 +47,7 @@ export const SITE = {
   // Efectos visuales de fondo
   backdropEffects: {
     leftGlow: true,
-    rightGlow: true,
+    rightGlow: false,
     },
     
   // Formulario

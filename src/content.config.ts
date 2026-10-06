@@ -4,6 +4,7 @@ import { glob } from 'astro/loaders';
 
 const projectSchema = z.object({
   title: z.string(),
+  summary: z.string(),
   description: z.string(),
 
   // Sitio en vivo

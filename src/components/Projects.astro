@@ -1,96 +1,215 @@
 ---
 // src/components/Projects.astro
-import { getCollection } from 'astro:content';
-import { useTranslations } from '../i18n/utils';
-import { existsSync } from 'node:fs';
-import path from 'node:path';
+import { getCollection } from "astro:content";
+import { useTranslations } from "../i18n/utils";
+import { existsSync } from "node:fs";
+import path from "node:path";
 
 const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 
-const allProjects = await getCollection(lang === "en" ? "projectsEn" : "projectsEs");
+const allProjects = await getCollection(
+  lang === "en" ? "projectsEn" : "projectsEs",
+);
+const sorted = allProjects.sort((a, b) => a.data.order - b.data.order);
 
-// Destacados primero, luego por order
-const projects = allProjects.sort((a, b) => {
-  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-  return a.data.order - b.data.order;
-});
+const featured = sorted.filter((p) => p.data.featured);
+const rest = sorted.filter((p) => !p.data.featured);
 
-// true solo si la imagen existe en /public (o es una URL externa)
 const hasImage = (src?: string) =>
-  !!src && (src.startsWith('http') || existsSync(path.join(process.cwd(), 'public', src)));
+  !!src &&
+  (src.startsWith("http") ||
+    existsSync(path.join(process.cwd(), "public", src)));
+
+const projectUrl = (id: string) =>
+  lang === "en" ? `/en/projects/${id}` : `/proyectos/${id}`;
 ---
 
-<section class="py-20 relative z-10" id="proyectos">
-  <div class="mb-10 px-4 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold text-accent uppercase tracking-widest">
-      {t('proyectos.titulo')}
-    </h2>
-    <p class="text-muted/60 mt-2">{t('proyectos.subtitulo')}</p>
-  </div>
+<section class="py-24 relative z-10" id="proyectos">
+  <div class="max-w-6xl mx-auto px-4">
+    <header class="mb-12 max-w-2xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-text tracking-tight">
+        {t("proyectos.titulo")}
+      </h2>
+      <p class="text-muted/50 mt-3 text-lg leading-relaxed">
+        {t("proyectos.subtitulo")}
+      </p>
+    </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto px-4">
-    {
-      projects.map(({ id, data }) => (
-        <article class="group flex flex-col bg-surface/60 backdrop-blur-md border border-accent/15 rounded-xl overflow-hidden hover:border-accent/50 hover:shadow-glow transition-all duration-300">
+    <!-- ===== Destacados: ancho completo, imagen alternando lado ===== -->
+    <div class="space-y-8 mb-8">
+      {
+        featured.map((p, i) => (
+          <article class="group grid md:grid-cols-5 bg-surface/40 backdrop-blur-md border border-accent/15 rounded-2xl overflow-hidden hover:border-accent/40 transition-colors duration-300">
+            <div
+              class:list={[
+                "md:col-span-3 relative aspect-[16/10] overflow-hidden",
+                i % 2 === 1 && "md:order-2",
+              ]}
+            >
+              {hasImage(p.data.image) ? (
+                <img
+                  src={p.data.image}
+                  alt={p.data.imageAlt ?? p.data.title}
+                  loading="lazy"
+                  width="1440"
+                  height="900"
+                  class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-accent/15 via-surface to-bg flex items-center justify-center">
+                  <span class="text-7xl font-bold text-accent/20 select-none">
+                    {p.data.title.charAt(0)}
+                  </span>
+                </div>
+              )}
+              <span class="absolute top-4 left-4 text-[11px] font-semibold uppercase tracking-widest bg-accent text-bg px-2.5 py-1 rounded">
+                {t("proyectos.destacado")}
+              </span>
+            </div>
 
-          <div class="relative aspect-video overflow-hidden border-b border-accent/10">
-            {hasImage(data.image) ? (
-              <img
-                src={data.image}
-                alt={data.imageAlt ?? data.title}
-                loading="lazy"
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-              />
-            ) : (
-              <div class="w-full h-full bg-gradient-to-br from-accent/15 via-surface to-bg flex items-center justify-center">
-                <span class="text-6xl font-bold text-accent/30 select-none">
-                  {data.title.charAt(0)}
-                </span>
+            <div
+              class:list={[
+                "md:col-span-2 p-7 md:p-9 flex flex-col justify-center",
+                i % 2 === 1 && "md:order-1",
+              ]}
+            >
+              <div class="flex items-center gap-3 mb-3 text-xs font-mono text-muted/40">
+                <span>{t(`cat.${p.data.category}`)}</span>
+                <span class="w-1 h-1 rounded-full bg-muted/30" />
+                <span>{p.data.year}</span>
               </div>
-            )}
 
-            <span class="absolute top-3 right-3 text-[11px] font-mono bg-bg/80 backdrop-blur-sm text-accent px-2 py-1 rounded border border-accent/30">
-              {t(`cat.${data.category}`)}
-            </span>
-          </div>
+              <a href={projectUrl(p.id)} class="hover:text-accent transition-colors">{p.data.title}</a>
 
-          <div class="flex flex-col flex-grow p-6">
-            <div class="flex items-baseline justify-between gap-3 mb-2">
-              <h3 class="text-xl font-bold text-text">{data.title}</h3>
-              <span class="text-xs font-mono text-muted/40 shrink-0">{data.year}</span>
-            </div>
+              <p class="text-[15px] text-muted/70 leading-relaxed mb-6">
+                {p.data.summary}
+              </p>
 
-            <p class="text-sm text-muted/70 leading-relaxed mb-5 flex-grow">
-              {data.description}
-            </p>
+              <div class="flex flex-wrap gap-1.5 mb-7">
+                {p.data.tags.map((tag) => (
+                  <span class="text-[11px] font-mono text-muted/60 bg-white/5 px-2 py-0.5 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              {data.tags.map((tag) => (
-                <span class="text-[11px] font-mono bg-accent/10 text-accent px-2 py-0.5 rounded border border-accent/20">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-accent/10">
-              {data.demo && (
-                <a href={data.demo} target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-light transition-colors">
-                  {t('proyectos.verSitio')}
-                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+              <div class="flex items-center gap-5 mt-auto">
+                <a
+                  href={projectUrl(p.id)}
+                  class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-light transition-colors"
+                >
+                  {t("proyectos.verCaso")}
+                  <span class="group-hover:translate-x-0.5 transition-transform">
+                    →
+                  </span>
                 </a>
-              )}
-              {data.repo && (
-                <a href={data.repo} target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-1.5 text-sm text-muted/60 hover:text-accent transition-colors">
-                  {t('proyectos.verCodigo')}
-                </a>
+                {p.data.demo && (
+                  <a
+                    href={p.data.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                  >
+                    {t("proyectos.verSitio")}
+                  </a>
+                )}
+                {p.data.repo && (
+                  <a
+                    href={p.data.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                  >
+                    {t("proyectos.verCodigo")}
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- ===== Secundarios: retícula compacta ===== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        rest.map((p) => (
+          <article class="group flex flex-col bg-surface/30 backdrop-blur-md border border-accent/10 rounded-xl overflow-hidden hover:border-accent/35 transition-colors duration-300">
+            <div class="relative aspect-[16/9] overflow-hidden">
+              {hasImage(p.data.image) ? (
+                <img
+                  src={p.data.image}
+                  alt={p.data.imageAlt ?? p.data.title}
+                  loading="lazy"
+                  width="1440"
+                  height="810"
+                  class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-accent/10 via-surface to-bg flex items-center justify-center">
+                  <span class="text-5xl font-bold text-accent/20 select-none">
+                    {p.data.title.charAt(0)}
+                  </span>
+                </div>
               )}
             </div>
-          </div>
-        </article>
-      ))
-    }
+
+            <div class="flex flex-col flex-grow p-6">
+              <div class="flex items-center gap-3 mb-2 text-xs font-mono text-muted/40">
+                <span>{t(`cat.${p.data.category}`)}</span>
+                <span class="w-1 h-1 rounded-full bg-muted/30" />
+                <span>{p.data.year}</span>
+              </div>
+
+              <a href={projectUrl(p.id)} class="hover:text-accent transition-colors">{p.data.title}</a>
+              <p class="text-sm text-muted/65 leading-relaxed mb-5 flex-grow">
+                {p.data.summary}
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mb-5">
+                {p.data.tags.map((tag) => (
+                  <span class="text-[11px] font-mono text-muted/60 bg-white/5 px-2 py-0.5 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div class="flex items-center gap-5 mt-auto">
+                <a
+                  href={projectUrl(p.id)}
+                  class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-light transition-colors"
+                >
+                  {t("proyectos.verCaso")}
+                  <span class="group-hover:translate-x-0.5 transition-transform">
+                    →
+                  </span>
+                </a>
+                {p.data.demo && (
+                  <a
+                    href={p.data.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                  >
+                    {t("proyectos.verSitio")}
+                  </a>
+                )}
+                {p.data.repo && (
+                  <a
+                    href={p.data.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-muted/50 hover:text-accent transition-colors"
+                  >
+                    {t("proyectos.verCodigo")}
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
   </div>
 </section>

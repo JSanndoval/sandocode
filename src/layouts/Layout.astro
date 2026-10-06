@@ -7,13 +7,20 @@ import WhatsappButton from '../components/WhatsappButton.astro';
 import { useTranslations } from '../i18n/utils';
 import { SITE } from '../config';
 
-interface Props { lang?: "es" | "en"; }
-const { lang = SITE.defaultLang } = Astro.props;
+
+interface Props {
+  lang?: "es" | "en";
+  title?: string;
+  description?: string;
+  image?: string;
+  alternate?: string;
+}
+const { lang = SITE.defaultLang, title, description, image, alternate  } = Astro.props;
 const t = useTranslations(lang);
 
-const pageTitle = `${SITE.title} - ${SITE.tagline}`;
-const pageDesc = lang === "es" ? SITE.desc : SITE.descEn;
-const ogUrl = new URL(SITE.ogImage, SITE.website).href;
+const pageTitle = title ? `${title} — ${SITE.title}` : `${SITE.title} - ${SITE.tagline}`;
+const pageDesc = description ?? (lang === "es" ? SITE.desc : SITE.descEn);
+const ogUrl = new URL(image ?? SITE.ogImage, SITE.website).href;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -47,6 +54,28 @@ const jsonLd = {
     <meta name="description" content={pageDesc} />
     <meta name="author" content={SITE.author} />
     <link rel="canonical" href={new URL(Astro.url.pathname, SITE.website).href} />
+    {alternate && (
+      <>
+        <link
+          rel="alternate"
+          hreflang={lang === "es" ? "en" : "es"}
+          href={new URL(alternate, SITE.website).href}
+        />
+        <link
+          rel="alternate"
+          hreflang={lang === "es" ? "es" : "en"}
+          href={new URL(Astro.url.pathname, SITE.website).href}
+        />
+        <link rel="alternate" hreflang="x-default" href={SITE.website} />
+      </>
+    )}
+    <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
@@ -59,7 +88,7 @@ const jsonLd = {
   </head>
   <body class="bg-bg min-h-screen text-text font-sans selection:bg-accent selection:text-black">
     {SITE.backdropEffects.leftGlow && (
-      <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="fixed top-[-15%] left-[-5%] w-[35vw] h-[35vw] bg-accent/[0.07] rounded-full blur-[140px] pointer-events-none"></div>
     )}
     {SITE.backdropEffects.rightGlow && (
       <div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>

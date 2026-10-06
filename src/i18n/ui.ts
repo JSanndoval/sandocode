@@ -13,11 +13,20 @@ export const ui = {
     "nav.servicios": "Servicios",
     "nav.proyectos": "Proyectos",
     "nav.contacto": "Contacto",
+    "nav.experiencia": "Experiencia",
 
-    "hero.titulo": "Ingeniería Web & Diseño Estructural",
+    "experiencia.titulo": "Experiencia",
+    "experiencia.subtitulo": "Dónde he trabajado y qué he estudiado.",
+    "experiencia.trabajo": "Trayectoria profesional",
+    "experiencia.educacion": "Formación",
+    "experiencia.actual": "Actual",
+
+    "hero.disponible": "Disponible para nuevos proyectos",
+    "hero.titulo": "Construyo aplicaciones web rápidas y mantenibles.",
     "hero.descripcion":
-      "Construyo aplicaciones web con la misma precisión técnica con la que estructuro progresiones armónicas o desarrollo proyectos narrativos. Arquitecturas estáticas limpias con Astro, cero sobreingeniería, y soluciones frontend diseñadas con atención meticulosa a la legibilidad y el rendimiento.",
-    "hero.boton": "Explorar Proyectos",
+      "Desarrollador Full Stack en Monterrey. Trabajo con .NET Core y Angular en Teleperformance, y construyo sitios, tiendas en línea y plataformas a medida bajo la marca sandocode.",
+    "hero.boton": "Ver proyectos",
+    "hero.cv": "Descargar CV",
 
     "sobremi.titulo": "Sobre Mí",
     "sobremi.nombre": "Jorge Sandoval",
@@ -26,6 +35,10 @@ export const ui = {
       "Desarrollador Full Stack en Teleperformance (.NET Core & Angular) y freelance desde 2024. Construyo sitios, tiendas online y dashboards con la misma precisión con la que estructuro código: sin relleno, sin sobreingeniería.",
     "sobremi.disponible": "Disponible para nuevos proyectos",
     "sobremi.stack": "Stack principal",
+    "sobremi.rumbo": "Hacia dónde voy",
+    "sobremi.rumboTexto":
+      "Mi siguiente paso es la administración de proyectos: quiero coordinar equipos y entregas, no solo escribir el código. Vengo de Ingeniería en Administración de Sistemas, así que la gestión siempre estuvo en la mezcla; ahora me estoy formando de forma específica en ello.",
+    "sobremi.cursos": "Formación en curso",
 
     "stats.1.valor": "2+",
     "stats.1.label": "Años de experiencia",
@@ -62,6 +75,11 @@ export const ui = {
     "proyectos.subtitulo": "Explora mis desarrollos recientes.",
     "proyectos.verSitio": "Ver sitio",
     "proyectos.verCodigo": "Código",
+    "proyectos.destacado": "Destacado",
+    "proyectos.verCaso": "Ver caso",
+    "proyectos.volver": "Volver a proyectos",
+    "proyectos.contexto": "Contexto",
+    "proyectos.stack": "Stack",
 
     "cat.landing": "Landing",
     "cat.ecommerce": "E-commerce",
@@ -109,11 +127,20 @@ export const ui = {
     "nav.servicios": "Services",
     "nav.proyectos": "Projects",
     "nav.contacto": "Contact",
+    "nav.experiencia": "Experience",
+    
+    "experiencia.titulo": "Experience",
+    "experiencia.subtitulo": "Where I've worked and what I studied.",
+    "experiencia.trabajo": "Professional experience",
+    "experiencia.educacion": "Education",
+    "experiencia.actual": "Present",
 
-    "hero.titulo": "Web Engineering & Structural Design",
+    "hero.disponible": "Available for new projects",
+    "hero.titulo": "I build fast, maintainable web applications.",
     "hero.descripcion":
-      "I build web applications with the same technical precision I use to structure harmonic progressions or develop narrative projects. Clean static architectures with Astro, zero over-engineering, and frontend solutions designed with meticulous attention to readability and performance.",
-    "hero.boton": "Explore Projects",
+      "Full Stack Developer based in Monterrey, Mexico. I work with .NET Core and Angular at Teleperformance, and build custom sites, online stores and platforms under the sandocode brand.",
+    "hero.boton": "View projects",
+    "hero.cv": "Download CV",
 
     "sobremi.titulo": "About Me",
     "sobremi.nombre": "Jorge Sandoval",
@@ -122,6 +149,10 @@ export const ui = {
       "Full Stack Developer at Teleperformance (.NET Core & Angular) and freelancer since 2024. I build websites, online stores, and dashboards with the same precision I bring to code: no filler, no over-engineering.",
     "sobremi.disponible": "Available for new projects",
     "sobremi.stack": "Main stack",
+    "sobremi.rumbo": "Where I'm headed",
+    "sobremi.rumboTexto":
+      "My next step is project management: I want to coordinate teams and deliveries, not just write the code. I come from a Systems Administration Engineering background, so management was always part of the mix; now I'm training for it specifically.",
+    "sobremi.cursos": "Currently studying",
 
     "stats.1.valor": "2+",
     "stats.1.label": "Years of experience",
@@ -158,6 +189,11 @@ export const ui = {
     "proyectos.subtitulo": "Explore my recent work.",
     "proyectos.verSitio": "View site",
     "proyectos.verCodigo": "Code",
+    "proyectos.destacado": "Featured",
+    "proyectos.verCaso": "View case",
+    "proyectos.volver": "Back to projects",
+    "proyectos.contexto": "Context",
+    "proyectos.stack": "Stack",
 
     "cat.landing": "Landing",
     "cat.ecommerce": "E-commerce",
